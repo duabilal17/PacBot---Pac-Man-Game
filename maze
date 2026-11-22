@@ -1,0 +1,39 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <utility>
+#include <vector>
+
+// The Maze stores the map and draws it
+// (is this tile a wall? how many dots are left?).
+class Maze {
+private:
+    // The untouched map, so we can restart the game.
+    std::vector<std::string> original;
+    // The map being played (dots disappear from this one when eaten).
+    std::vector<std::string> grid;
+    // Starting (row, col) of each ghost, found from the 'G' letters.
+    std::vector<std::pair<int, int>> ghostStarts;
+    // Starting position of Pacman, found from the 'P' letter.
+    int pacStartRow = 0;
+    int pacStartCol = 0;
+    // How many dots and power pellets are still on the map.
+    int dotsLeft = 0;
+
+public:
+    Maze();                          // loads the map
+    void reset();                    // puts all the dots back
+
+    unsigned getWidth() const;       // map width in pixels
+    unsigned getHeight() const;      // map height in pixels
+
+    bool isWall(int row, int col) const;   // true if (row, col) is a wall
+    char eat(int row, int col);            // eats a dot/pellet, returns what was there
+    int getDotsLeft() const;
+
+    int getPacmanStartRow() const;
+    int getPacmanStartCol() const;
+    const std::vector<std::pair<int, int>>& getGhostStarts() const;
+
+    void draw(sf::RenderWindow& window) const;   // draws walls, dots, pellets
+};
