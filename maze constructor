@@ -1,0 +1,28 @@
+#include "Maze.h"
+#include "../Common/Constants.h"
+
+Maze::Maze() {
+    // The map as text. Every character is one tile:
+    //   # = wall   . = dot   o = power pellet   space = empty
+    //   P = Pacman start   G = ghost start
+    // Every row must have the same length (19 characters).
+    original = {
+        "###################",
+        "#........#........#",
+        "#o##.###.#.###.##o#",
+        "#.................#",
+        "#.##.#.#####.#.##.#",
+        "#....#...#...#....#",
+        "####.###.#.###.####",
+        "#.....G.G.G.G.....#",
+        "#.##.###.#.###.##.#",
+        "#..#.#.#####.#.#..#",
+        "#o...............o#",
+        "#.##.###.#.###.##.#",
+        "#....#...P...#....#",
+        "#.##.#.#####.#.##.#",
+        "#o...#.......#...o#",
+        "###################"
+    };
+    reset();
+}
